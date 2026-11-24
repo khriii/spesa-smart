@@ -3,7 +3,7 @@ FROM node:22-alpine
 WORKDIR /app
 
 COPY package.json ./
-RUN npm install --no-audit --no-fund
+RUN npm install --legacy-peer-deps --no-audit --no-fund && npm cache clean --force && rm -rf /root/.npm
 
 COPY . .
 RUN npm run build

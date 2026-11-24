@@ -913,7 +913,21 @@ export default function App() {
       if (priceChangedOnly && !priceDiffs.has(p.productId)) return false;
       return true;
     });
-    return sortNormalizedProducts(filtered, sortBy);
+    const sorted = sortNormalizedProducts(filtered, sortBy);
+    if (favoriteIds.size === 0 || favoritesOnly) {
+      return sorted;
+    }
+
+    const favProducts: IperalProduct[] = [];
+    const otherProducts: IperalProduct[] = [];
+    for (const item of sorted) {
+      if (favoriteIds.has(item.productId)) {
+        favProducts.push(item);
+      } else {
+        otherProducts.push(item);
+      }
+    }
+    return [...favProducts, ...otherProducts];
   }, [
     favoriteIds,
     favoritesOnly,
