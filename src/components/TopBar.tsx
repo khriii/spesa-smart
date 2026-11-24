@@ -11,12 +11,14 @@ import {
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import type { AccentColor, ActiveTab, ThemeMode } from '../types/iperal';
+import { formatEuro } from '../utils/formatters';
 import { ChristmasLightsBar } from './ChristmasDecorations';
 
 interface TopBarProps {
   activeTab: ActiveTab;
   onSelectTab: (tab: ActiveTab) => void;
   cartCount: number;
+  cartTotal: number;
   favoritesCount: number;
   historyCount: number;
   onOpenCart: () => void;
@@ -54,6 +56,7 @@ export function TopBar({
   activeTab,
   onSelectTab,
   cartCount,
+  cartTotal,
   favoritesCount,
   historyCount,
   onOpenCart,
@@ -142,10 +145,14 @@ export function TopBar({
           <button
             type="button"
             onClick={onOpenCart}
-            className="inline-flex cursor-pointer items-center gap-2 whitespace-nowrap shrink-0 rounded-lg bg-[var(--accent)] px-3.5 py-2 text-sm font-semibold text-[var(--accent-fg)] transition-colors duration-150 hover:bg-[var(--accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+            className="inline-flex cursor-pointer items-center gap-1.5 whitespace-nowrap shrink-0 rounded-lg bg-[var(--accent)] px-2.5 py-2 text-xs font-semibold text-[var(--accent-fg)] transition-colors duration-150 hover:bg-[var(--accent-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] sm:gap-2 sm:px-3.5 sm:text-sm"
           >
-            <ShoppingBag className="h-4 w-4" aria-hidden="true" />
+            <ShoppingBag className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span className="tabular-nums">Carrello ({cartCount})</span>
+            <span className="opacity-65" aria-hidden="true">·</span>
+            <span className="font-mono font-bold tabular-nums">
+              {formatEuro(cartTotal)}
+            </span>
           </button>
 
           <div className="relative" ref={menuRef}>

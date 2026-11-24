@@ -122,7 +122,7 @@ export function ChristmasLightsBar({ variant = 'dark' }: ChristmasDecorationProp
   return (
     <div
       aria-hidden="true"
-      className="christmas-lights-bar pointer-events-none relative h-4 w-full overflow-hidden select-none"
+      className="christmas-lights-bar pointer-events-none relative h-4 w-full overflow-x-clip overflow-y-visible select-none"
     >
       <svg
         viewBox="0 0 1440 16"

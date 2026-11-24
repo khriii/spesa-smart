@@ -656,6 +656,11 @@ export default function App() {
     [stagedCart],
   );
 
+  const totalCartEstimatedSpend = useMemo(
+    () => stagedCart.reduce((sum, item) => sum + (item.product.price ?? 0) * item.quantity, 0),
+    [stagedCart],
+  );
+
   const priceDiffs = useMemo(() => {
     const map = new Map<number, PriceDiff>();
     const baseline = previousVisitRef.current;
@@ -1004,6 +1009,7 @@ export default function App() {
         activeTab={activeTab}
         onSelectTab={handleSelectTab}
         cartCount={totalCartItemsCount}
+        cartTotal={totalCartEstimatedSpend}
         favoritesCount={favorites.length}
         historyCount={orderHistory.length}
         onOpenCart={() => setIsCartOpen(true)}
