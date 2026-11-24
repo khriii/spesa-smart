@@ -1,0 +1,6 @@
+{
+  "name": "Iperal Smart",
+  "description": "Interfaccia veloce per la spesa online su Iperal con ordinamento automatico per prezzo al kg/litro, preferiti e invio carrello in blocco.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

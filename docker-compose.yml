@@ -1,0 +1,16 @@
+services:
+  spesa-smart:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spesa-smart
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      IPERAL_SESSION_SECRET: ${IPERAL_SESSION_SECRET:-}
+      IPERAL_PROXY_API_KEY: ${IPERAL_PROXY_API_KEY:-}
+      IPERAL_JSESSIONID: ${IPERAL_JSESSIONID:-}
+      IPERAL_EBSN_ACCOUNT: ${IPERAL_EBSN_ACCOUNT:-}
+    restart: unless-stopped
